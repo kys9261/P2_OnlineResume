@@ -18,7 +18,7 @@ var HTMLheaderRole = '<span>%data%</span><hr/>';
 var HTMLcontactGeneric = '<li class="flex-item"><span class="orange-text">%contact%</span><span class="white-text">%data%</span></li>';
 var HTMLmobile = '<li class="flex-item"><span class="orange-text">mobile</span><span class="white-text">%data%</span></li>';
 var HTMLemail = '<li class="flex-item"><span class="orange-text">email</span><span class="white-text">%data%</span></li>';
-var HTMLtwitter = '<li class="flex-item"><span class="orange-text">twitter</span><span class="white-text">%data%</span></li>';
+var HTMLfacebook = '<li class="flex-item"><span class="orange-text">facebook</span><span class="white-text">%data%</span></li>';
 var HTMLgithub = '<li class="flex-item"><span class="orange-text">github</span><span class="white-text">%data%</span></li>';
 var HTMLblog = '<li class="flex-item"><span class="orange-text">blog</span><span class="white-text">%data%</span></li>';
 var HTMLlocation = '<li class="flex-item"><span class="orange-text">location</span><span class="white-text">%data%</span></li>';
@@ -64,7 +64,7 @@ The International Name challenge in Lesson 2 where you'll create a function that
 */
 $(document).ready(function() {
   $('button').click(function() {
-    var iName = inName() || function(){};
+    var iName = inName(name) || function(){};
     $('#name').html(iName);  
   });
 });
@@ -96,7 +96,6 @@ See the documentation below for more details.
 https://developers.google.com/maps/documentation/javascript/reference
 */
 var map;    // declares a global map variable
-
 
 /*
 Start here! initializeMap() is called when page is loaded.
@@ -158,7 +157,7 @@ function initializeMap() {
     var marker = new google.maps.Marker({
       map: map,
       position: placeData.geometry.location,
-      title: name
+      title: placeData.name
     });
 
     // infoWindows are the little helper windows that open when you click
@@ -170,7 +169,11 @@ function initializeMap() {
 
     // hmmmm, I wonder what this is about...
     google.maps.event.addListener(marker, 'click', function() {
-      // your code goes here!
+        if(marker.title == "서울특별시"){
+          alert("Seoul");  
+        }else{
+          alert("Sunmoon University");
+        }
     });
 
     // this is where the pin actually gets added to the map.
@@ -227,6 +230,8 @@ function initializeMap() {
   pinPoster(locations);
 
 }
+
+
 
 /*
 Uncomment the code below when you're ready to implement a Google Map!
